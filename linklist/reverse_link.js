@@ -1,5 +1,4 @@
 /**
- * Created by kwsy on 2018/9/5.
  * 翻转链表
  */
 var Node = function(data){
