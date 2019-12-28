@@ -192,63 +192,63 @@ function SuperConverter(){
 
 
 function test(){
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div>p>span');
-    //console.log(html);
+    var sc = new SuperConverter();
+    var html = sc.convert('div>p>span');
+    console.log(html);
 
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div{aas}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div{aas}>p');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div{aa>s}>p');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div{aa>s}>p{哈哈}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div#haha.class1.class2[name=dd type=text]{hhh}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div>p{div的下级}+span{p的平级}^div{从下级中出来了}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div{这是一段话}+div{这是另一段}>p{另一段的子级内容}');
-    //console.log(html);
-    //
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div.class1#id1>p.class2#id2{加油}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div.class1.class2.class3{继续努力}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div.class1[align=center style=display:none autofocus]{别忘了要}+p{和其他功能}>span{兼容哦}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('div.class1[align=center style=display:none autofocus]{别忘了要}+p{和其他功能}>span{兼容哦}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('form#payment>(fieldset>legend+ol>li>label[for=name]{演示表单：}+input[id=name name=marketing_id type=text placeholder=请输测试信息])+fieldset>button[type=submit]{提交}');
-    //console.log(html);
-    //
-    //var sc = new SuperConverter();
-    //var html = sc.convert('table>tr>td{高难度}*3');
-    //console.log(html);
-    //
+    var sc = new SuperConverter();
+    var html = sc.convert('div{aas}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div{aas}>p');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div{aa>s}>p');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div{aa>s}>p{哈哈}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div#haha.class1.class2[name=dd type=text]{hhh}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div>p{div的下级}+span{p的平级}^div{从下级中出来了}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div{这是一段话}+div{这是另一段}>p{另一段的子级内容}');
+    console.log(html);
+
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div.class1#id1>p.class2#id2{加油}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div.class1.class2.class3{继续努力}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div.class1[align=center style=display:none autofocus]{别忘了要}+p{和其他功能}>span{兼容哦}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('div.class1[align=center style=display:none autofocus]{别忘了要}+p{和其他功能}>span{兼容哦}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('form#payment>(fieldset>legend+ol>li>label[for=name]{演示表单：}+input[id=name name=marketing_id type=text placeholder=请输测试信息])+fieldset>button[type=submit]{提交}');
+    console.log(html);
+
+    var sc = new SuperConverter();
+    var html = sc.convert('table>tr>td{高难度}*3');
+    console.log(html);
+
     var sc = new SuperConverter();
     var html = sc.convert('table>(tr>td{高难度}*3)*4');
     console.log(html);
