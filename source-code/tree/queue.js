@@ -1,7 +1,6 @@
 /**
- * 定义一个队列
+ * Created by kwsy on 2018/9/8.
  */
-
 function Queue(){
     var items = [];   // 存储数据
 
@@ -44,7 +43,3 @@ function Queue(){
 
 
 exports.Queue = Queue;
-
-
-
-

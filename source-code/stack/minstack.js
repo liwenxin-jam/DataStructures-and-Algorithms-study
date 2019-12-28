@@ -1,3 +1,7 @@
+/**
+ * Created by kwsy on 2018/9/2.
+ */
+
 Stack = require('./mystack.js')
 
 function MinStack(){
@@ -32,11 +36,22 @@ function MinStack(){
 
 minstack = new MinStack();
 
-minstack.push(3);
-minstack.push(6);
-minstack.push(8);
-console.log(minstack.min());
+//minstack.push(3);
+//minstack.push(6);
+//minstack.push(8);
+//console.log(minstack.min());
+//minstack.push(2);
+//console.log(minstack.min());
+//minstack.pop();
+//console.log(minstack.min());
+
+minstack.push(1);
 minstack.push(2);
+minstack.push(3);
 console.log(minstack.min());
 minstack.pop();
 console.log(minstack.min());
+minstack.pop();
+console.log(minstack.min());
+
+

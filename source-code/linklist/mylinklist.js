@@ -1,4 +1,5 @@
 /**
+ * Created by kwsy on 2018/9/3.
  * 定义一个链表
  */
 
@@ -11,8 +12,8 @@ function LinkList(){
     }
 
     var length = 0;        // 长度
-    var head = null;    // 头节点
-    var tail = null;    // 尾节点
+    var head = null;       // 头节点
+    var tail = null;       // 尾节点
 
     // 添加一个新元素
     this.append = function(data){
@@ -35,28 +36,38 @@ function LinkList(){
         return length;
     };
 
+    // 获得指定位置的节点
+    var get_node = function(index){
+        if(index < 0 || index >= length){
+            return null;
+        }
+        var curr_node = head;
+        var node_index = index;
+        while(node_index-- > 0){
+            curr_node = curr_node.next;
+        }
+        return curr_node;
+    };
+
     // 在指定位置插入新的元素
     this.insert = function(index, data){
+        // index == length,说明是在尾节点的后面新增,直接调用append方法即可
         if(index == length){
             return this.append(data);
         }else if(index > length || index < 0){
+            // index范围错误
             return false;
         }else{
             var new_node = new Node(data);
             if(index == 0){
+                // 如果在头节点前面插入,新的节点就变成了头节点
                 new_node.next= head;
                 head = new_node;
             }else{
-                var insert_index = 1;
-                var curr_node = head;
-                // 找到应该插入的位置
-                while(insert_index < index){
-                    curr_node = curr_node.next;
-                    insert_index += 1;
-                }
-                var next_node = curr_node.next;
-                curr_node.next = new_node;
-                new_node.next = next_node;
+                // 要插入的位置是index,找到索引为index-1的节点,然后进行连接
+                var pre_node = get_node(index-1);
+                new_node.next = pre_node.next;
+                pre_node.next = new_node;
             }
             length += 1;
             return true;
@@ -65,30 +76,31 @@ function LinkList(){
 
     // 删除指定位置的节点
     this.remove = function(index){
+        // 参数不合法
         if(index < 0 || index >= length){
             return null;
         }else{
             var del_node = null;
+            // 删除的是头节点
             if(index == 0){
                 // head指向下一个节点
                 del_node = head;
                 head = head.next;
-            }else{
-                var del_index = 0;
-                var pre_node = null;
-                var curr_node = head;
-                while(del_index < index){
-                    del_index += 1;
-                    pre_node = curr_node;
-                    curr_node =curr_node.next;
+                // 如果head == null,说明之前链表只有一个节点
+                if(!head){
+                    tail = null;
                 }
-                del_node = curr_node;
-                pre_node.next = curr_node.next;
+            }else{
+                // 找到索引为index-1的节点
+                var pre_node = get_node(index-1);
+                del_node = pre_node.next;
+                pre_node.next = pre_node.next.next;
                 // 如果删除的是尾节点
-                if(curr_node.next==null){
+                if(del_node.next==null){
                     tail = pre_node;
                 }
             }
+
             length -= 1;
             del_node.next = null;
             return del_node.data;
@@ -107,18 +119,14 @@ function LinkList(){
 
     // 返回指定位置节点的值
     this.get = function(index){
-        if(index < 0 || index >= length){
-            return null;
+        var node = get_node(index);
+        if(node){
+            return node.data;
         }
-
-        var node_index = 0;
-        var curr_node = head;
-        while(node_index < index){
-            node_index += 1;
-            curr_node = curr_node.next;
-        }
-        return curr_node.data;
+        return null;
     };
+
+
 
     // 返回链表头节点的值
     this.head = function(){
@@ -178,3 +186,6 @@ function LinkList(){
 exports.LinkList = LinkList;
 
 
+var link = new LinkList();
+link.append(1).append(2);
+link.print();

@@ -1,4 +1,5 @@
 /**
+ * Created by kwsy on 2018/8/25.
  * 有一个数组a[1000]存放0--1000;要求每隔二个数删掉一个数，
  * 到末尾时循环至开头继续进行，求最后一个被删掉的数的原始下标位置
  */
@@ -28,7 +29,7 @@ function del_ring(arr_list){
 
 
 var arr_list = [];
-for(var i=0;i< 100;i++){
+for(var i=0;i< 3;i++){
     arr_list.push(i);
 }
 

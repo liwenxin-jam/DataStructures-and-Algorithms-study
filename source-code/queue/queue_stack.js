@@ -1,4 +1,5 @@
 /**
+ * Created by kwsy on 2018/9/3.
  * 用两个队列实现一个栈,检验的是对栈与队列的理解
  */
 
@@ -63,4 +64,4 @@ console.log(q_stack.top());   // 栈顶是 4
 console.log(q_stack.pop());   // 移除 4
 console.log(q_stack.top());   // 栈顶变成 2
 console.log(q_stack.pop());   // 移除 2
-console.log(q_stack.pop());   // 移除 2
+console.log(q_stack.pop());   // 移除 1

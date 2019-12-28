@@ -1,4 +1,5 @@
 /**
+ * Created by kwsy on 2018/9/4.
  * 用队列输出杨辉三角的前n行 n >= 1
  */
 
@@ -54,5 +55,5 @@ function print_yanghui_2(n){
 }
 
 
-print_yanghui(10);
+print_yanghui(4);
 //print_yanghui_2(10);

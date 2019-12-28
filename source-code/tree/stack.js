@@ -1,5 +1,5 @@
 /**
- * 定义一个Stack类,实现栈这种数据结构
+ * Created by kwsy on 2018/9/8.
  */
 
 function Stack() {
