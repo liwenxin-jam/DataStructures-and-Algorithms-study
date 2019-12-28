@@ -24,7 +24,7 @@ function BinarySearchTree(){
             return true;
         }
 
-        if(data < node.data){
+        if(data.key < node.data){
             if(node.leftChild){
                 // 往左子树里插入
                 return insert_data(node.leftChild, data);
@@ -35,7 +35,7 @@ function BinarySearchTree(){
                 new_node.parent = node;
                 return true;
             }
-        }else if(data > node.data){
+        }else if(data.key > node.data){
             if(node.rightChild){
                 // 向右子树里插入
                 return insert_data(node.rightChild, data);
@@ -254,6 +254,7 @@ function MyDict(){
 };
 
 var md = new MyDict();
+md.set('name', 'javascript');
 md.set('name', 'javascript');
 md.set('age', 20);
 

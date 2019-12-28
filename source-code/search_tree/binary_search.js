@@ -74,7 +74,9 @@ function BinarySearchTree(){
         // 连接父节点和子节点
         if(parent==null){
             root = next_node;
-            root.parent = null;
+            if(root !=null){
+                root.parent = null;
+            }
         }else{
             if(parent.leftChild && parent.leftChild.data == node.data){
                 parent.leftChild = next_node;
@@ -243,5 +245,7 @@ function test_insert(){
     bst.remove(27);
     bst.print();
 };
-
+var bst = new BinarySearchTree();
+bst.insert(4);
+bst.remove(4);
 test_insert();
