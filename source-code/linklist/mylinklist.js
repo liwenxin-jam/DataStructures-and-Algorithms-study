@@ -185,7 +185,3 @@ function LinkList(){
 
 exports.LinkList = LinkList;
 
-
-var link = new LinkList();
-link.append(1).append(2);
-link.print();

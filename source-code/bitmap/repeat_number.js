@@ -56,4 +56,5 @@ for(var i = 0; i <=9; i++){
     }
 }
 
+console.log(bm.isRepeat(0));
 console.log(arr);

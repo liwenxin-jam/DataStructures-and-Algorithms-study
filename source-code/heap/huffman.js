@@ -1,11 +1,10 @@
 /**
- * Created by kwsy on 2018/9/9.
+ * Created by kwsy on 2018/9/11.
  */
-
 function MinHeap(size){
-    var heap = new Array(size);    // 数组
-    var curr_size = 0;             // 当前堆的大小
-    var max_size = size;           // 堆最大容量
+    var heap = new Array(size);
+    var curr_size = 0;
+    var max_size = size;
 
 
     var shif_down = function(start, m){
@@ -14,13 +13,13 @@ function MinHeap(size){
         var min_child_index = parent_index*2 + 1;       // 一定有左孩子,先让min_child_index等于左孩子的索引
 
         while(min_child_index <= m){
-            // min_child_index+1 是左孩子的索引, 左孩子大于右孩子
-            if(min_child_index < m && heap[min_child_index] > heap[min_child_index+1]){
+            // min_child_index+1 是右孩子的索引, 左孩子大于右孩子
+            if(min_child_index < m && heap[min_child_index].data.rate > heap[min_child_index+1].data.rate){
                 min_child_index = min_child_index+1;  // min_child_index永远指向值小的那个孩子
             }
 
             // 父节点的值小于等于两个孩子的最小值
-            if(heap[parent_index] <= heap[min_child_index]){
+            if(heap[parent_index].data.rate <= heap[min_child_index].data.rate){
                 break;   // 循环结束,不需要再调整了
             }else{
                 // 父节点和子节点的值互换
@@ -44,10 +43,10 @@ function MinHeap(size){
             heap[i] = arr[i];
         }
 
-        var curr_pos = Math.floor((curr_size-2)/2);      // 这是堆的最后一个分支节点
+        var curr_pos = Math.floor(curr_size/2);      // 这是堆的最后一个分支节点
         while(curr_pos >= 0){
-            shif_down(curr_pos, curr_size-1);            // 局部自上向下下滑调整
-            curr_pos -= 1;                               // 调整下一个分支节点
+            shif_down(curr_pos, curr_size-1);        // 局部自上向下下滑调整
+            curr_pos -= 1;                           // 调整下一个分支节点
         }
     };
 
@@ -58,7 +57,7 @@ function MinHeap(size){
 
         while(child_index > 0){
             // 父节点更小,就不用调整了
-            if(heap[parent_index] <= heap[child_index]){
+            if(heap[parent_index].data.rate <= heap[child_index].data.rate){
                 break;
             }else{
                 // 父节点和子节点的值互换
@@ -103,48 +102,90 @@ function MinHeap(size){
     this.print = function(){
         console.log(heap);
     };
-
-    this.get_min = function(){
-        if(curr_size > 0){
-            return heap[0];
-        }
-        return null;
-    }
 };
 
-//var arr = [53, 17, 78, 9, 45, 65, 87, 23];
-//var min_heap = new MinHeap(8);
-//
-//for(var i = 0; i<arr.length; i++){
-//    min_heap.insert(arr[i]);
-//}
-//
-//var sort_arr = []
-//for(var i =0;i<arr.length;i++){
-//    sort_arr.push(min_heap.remove_min());
-//}
-//
-//console.log(sort_arr);
 
-//var arr = [53, 17, 78, 9, 45, 65, 87, 23];
-//var min_heap = new MinHeap();
-//min_heap.init(arr);
-//min_heap.print();
+// 编码
+var CodeNode = function(code, rate){
+    this.code = code;     // 字符
+    this.rate = rate;     // 概率
+};
 
-var arr = [53, 17, 78, 9, 45, 65, 87, 23];
-var min_heap = new MinHeap(3);
+// 树节点
+var TreeNode = function(data){
+    this.data = data;
+    this.leftChild = null;
+    this.rightChild = null;
+    this.parent = null;
+};
 
-for(var i = 0; i<3; i++){
-    min_heap.insert(arr[i]);
+function HuffmanTree(){
+    var root = null;
+
+    this.init_tree = function(arr){
+        var min_heap = new MinHeap();
+        min_heap.init(arr);
+        for(var i = 0;i < arr.length - 1; i++){
+            var first = min_heap.remove_min();
+            var second = min_heap.remove_min();
+
+            var new_item = new CodeNode("", first.data.rate + second.data.rate);
+            var new_node = new TreeNode(new_item);
+            min_heap.insert(new_node);
+
+            new_node.leftChild = first;
+            new_node.rightChild = second;
+            first.parent = new_node;
+            second.parent = new_node;
+
+            root = new_node;
+        }
+    };
+
+    var get_code_from_tree = function(node, dict, code_str){
+        if(!node.leftChild && !node.rightChild){
+            // 页节点
+            dict[node.data.code] = code_str;
+            return;
+        }
+
+        if(node.leftChild){
+            get_code_from_tree(node.leftChild, dict, code_str+"0");
+        }
+        if(node.rightChild){
+            get_code_from_tree(node.rightChild, dict, code_str+"1");
+        }
+    };
+
+    this.get_code = function(){
+        // 获得最终的变长编码
+        var code_dict = {};
+        get_code_from_tree(root, code_dict, "");
+        return code_dict;
+    };
+
+    this.print = function(){
+        console.log(root);
+    };
+};
+
+
+// 准备数据
+var code_dict = {
+    "a": 0.12,
+    "b": 0.4,
+    "c": 0.15,
+    "d": 0.08,
+    "e": 0.25
+};
+var forest = [];
+
+for(var key in code_dict){
+    var item = new CodeNode(key, code_dict[key]);
+    forest.push(new TreeNode(item));
 }
 
-for(var i =3;i<arr.length;i++){
-    var item = arr[i];
-    if(item > min_heap.get_min()){
-        min_heap.remove_min();
-        min_heap.insert(item);
-    }
-}
 
-min_heap.print();
-
+var huffman_tree = new HuffmanTree();
+huffman_tree.init_tree(forest);
+console.log(huffman_tree.get_code());
