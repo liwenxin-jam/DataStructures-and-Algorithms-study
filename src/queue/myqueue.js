@@ -19,6 +19,11 @@ function Queue() {
     return items.length ? items[0] : undefined;
   }
 
+  // 返回队列尾部的元素
+  this.footer = () => {
+    return items.length ? items[items.length - 1] : undefined;
+  };
+
   // 返回队列的大小
   this.size = () => {
     return items.length;
